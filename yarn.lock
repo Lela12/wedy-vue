@@ -2568,9 +2568,9 @@
   "resolved" "https://registry.npmmirror.com/at-least-node/-/at-least-node-1.0.0.tgz"
   "version" "1.0.0"
 
-"autoprefixer@^10.2.4":
+"autoprefixer@^10.2.4", "autoprefixer@^10.4.7":
   "integrity" "sha512-ypHju4Y2Oav95SipEcCcI5J7CGPuvz8oat7sUtYj3ClK44bldfvtvcxK6IEK++7rqB7YchDGzweZIBG+SD0ZAA=="
-  "resolved" "https://registry.npmmirror.com/autoprefixer/-/autoprefixer-10.4.7.tgz"
+  "resolved" "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.7.tgz"
   "version" "10.4.7"
   dependencies:
     "browserslist" "^4.20.3"
