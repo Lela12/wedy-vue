@@ -2,6 +2,8 @@
   <div
     class="flex flex-col overflow-hidden bg-center bg-cover bg-main-bg place-items-center place-content-center h-[300px]"
   >
+    <!--    v-for="item in weather"-->
+    <div v-for="weather in this.$store.state.weather">{{ weather }}</div>
     <div />
     <div class="flex flex-col items-center w-full gap-16 px-10 font-bold">
       <header class="text-center">
@@ -17,8 +19,23 @@
           type="text"
           placeholder="현재 위치를 입력해 주세요.  ex)강남구"
         />
-        <button type="submit"></button>
+        <button type="submit">hi</button>
+        <div>{{ weather }}</div>
       </form>
     </div>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      weather: [],
+    };
+  },
+  created() {
+    this.$store.dispatch("FETCH_WEATHER");
+  },
+};
+</script>
