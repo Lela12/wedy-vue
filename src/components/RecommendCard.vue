@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-[330px] shadow-lg p-3 bg-flag bg-cover bg-center">
+  <div class="w-full h-[330px] shadow-lg p-3">
     <h3 class="m-2">
       {{ title }}
     </h3>

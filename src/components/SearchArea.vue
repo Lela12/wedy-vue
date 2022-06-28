@@ -2,8 +2,6 @@
   <div
     class="flex flex-col overflow-hidden bg-center bg-cover bg-main-bg place-items-center place-content-center h-[300px]"
   >
-    <!--    v-for="item in weather"-->
-    <div v-for="weather in this.$store.state.weather">{{ weather }}</div>
     <div />
     <div class="flex flex-col items-center w-full gap-16 px-10 font-bold">
       <header class="text-center">
@@ -17,25 +15,48 @@
           id="main-search-bar"
           class="py-1 bg-transparent placeholder:text-gray-400 placeholder:opacity-90 text-[15px] w-full"
           type="text"
-          placeholder="현재 위치를 입력해 주세요.  ex)강남구"
+          v-model="location"
+          @keydown.enter="getData"
+          :placeholder="getDefaultValue"
         />
-        <button type="submit">hi</button>
-        <div>{{ weather }}</div>
       </form>
+
+      <span class="country" v-if="getData">{{ getWeatherCity }}</span>
+      <div class="error" v-else>
+        해당하는 도시가 없습니다. 다시 입력해주세요!
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
+import { fetchWeatherData } from "@/api";
+
 export default {
   data() {
     return {
-      weather: [],
+      location: "Seoul",
+      defaultSearch: this.$store.state.defaultSearch,
     };
   },
+  computed: {
+    ...mapGetters([
+      "isSearched",
+      "getWeatherCity",
+      "getDefaultValue",
+      "getError",
+      { getWeatherMain: "getWeatherMain" },
+    ]),
+  },
+  methods: {
+    ...mapActions(["fetchWeatherData"]),
+    getData() {
+      this.fetchWeatherData(this.location);
+    },
+  },
   created() {
-    this.$store.dispatch("FETCH_WEATHER");
+    this.getData();
   },
 };
 </script>

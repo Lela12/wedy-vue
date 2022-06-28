@@ -1,3 +1,7 @@
+export const WEATHER_SUCCESS = "WEATHER_SUCCESS";
+export const WEATHER_FAIL = "WEATHER_FAIL";
+export const WEATHER_LOADING = "WEATHER_LOADING";
+
 export interface Weather {
   id: number;
   main: string;
@@ -41,3 +45,19 @@ export interface WeatherData {
     deg: number;
   };
 }
+
+export interface WeatherState {
+  loading: boolean;
+  data: WeatherData | null;
+}
+
+export interface WeatherLoading {
+  type: typeof WEATHER_LOADING;
+}
+
+export interface WeatherSuccess {
+  type: typeof WEATHER_SUCESS;
+  payload: WeatherData;
+}
+
+export type WeatherDispatchType = WeatherLoading | WeatherSuccess;

@@ -1,33 +1,94 @@
 import { createStore } from "vuex";
-import { ActionTypes } from "@/store/types";
-import { fetchSearchData } from "../api/index";
+import { fetchWeatherData } from "../api/index";
 import axios from "axios";
-const API_KEY = process.env.VUE_APP_OPEN_API_KEY;
+import theme from "tailwindcss/defaultTheme";
 
 export default createStore({
   state: {
-    weather: [],
+    defaultSearch: "Seoul",
+    location: "",
+    isError: false,
+    weatherData: {
+      id: "",
+      main: "",
+      description: "",
+      icon: "",
+      temp: "",
+      feelsLike: "",
+      info: "",
+      country: "",
+      wind: "",
+      clouds: "",
+      humidity: "",
+      name: "",
+    },
   },
-  getters: {},
+
+  getters: {
+    getWeatherMain(state) {
+      const { temp, feelsLike, description, icon, info } = state.weatherData;
+      return {
+        temp,
+        feelsLike,
+        description,
+        info,
+        icon,
+      };
+    },
+    getWeatherInfo(state) {
+      const { wind, clouds, humidity } = state.weatherData;
+      return {
+        wind,
+        clouds,
+        humidity,
+      };
+    },
+    getDefaultValue(state) {
+      return state.defaultSearch;
+    },
+    getWeatherCity(state) {
+      return state.weatherData.name ?? "seoul";
+    },
+    isSearched(state) {
+      return state.location !== "";
+    },
+    getError(state) {
+      return state.isError;
+    },
+  },
+
   mutations: {
-    SET_WEATHER(state, weather) {
-      //response.data -> weather
-      state.weather = weather;
+    ["SET_SEARCH"](state, location) {
+      state.location = location.toLowerCase();
+    },
+    ["SET_WEATHER_DATA"](state, data) {
+      console.log("SET_WEATHER_DATA", data);
+      state.weatherData = data;
+    },
+    ["SET_ERROR"](state, value) {
+      state.isError = value;
     },
   },
+
   actions: {
-    FETCH_WEATHER(context) {
-      fetchSearchData()
-        .then((response) => {
-          console.log(response.data);
-          context.commit("SET_WEATHER", response.data);
-          //mutation SET_WEATHER 실행
-          //commit을 통해 mutation의 값을 넘기고 있다.
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async fetchWeatherData({ commit }, location) {
+      console.log("fetch");
+      const { data } = await fetchWeatherData(location);
+      const newWeatherData = {
+        name: data.name,
+        temp: data.main.temp,
+        tempMin: data.main.temp_min,
+        tempMax: data.main.temp_max,
+        feelsLike: data.main.feels_like,
+        description: data.weather[0].description,
+        icon: `https://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+        info: data.weather[0].main,
+        wind: data.wind.speed,
+        humidity: data.main.humidity,
+        clouds: data.clouds.all,
+        country: data.sys.country,
+      };
+      commit("SET_WEATHER_DATA", newWeatherData);
     },
   },
-  modules: {},
 });
