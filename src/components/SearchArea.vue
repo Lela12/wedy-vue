@@ -17,7 +17,7 @@
           type="text"
           v-model="location"
           @keydown.enter="getData"
-          :placeholder="getDefaultValue"
+          :placeholder="location"
         />
       </form>
 
