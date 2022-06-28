@@ -20,7 +20,6 @@
           :placeholder="location"
         />
       </form>
-
       <span class="country" v-if="getData">{{ getWeatherCity }}</span>
       <div class="error" v-else>
         해당하는 도시가 없습니다. 다시 입력해주세요!
@@ -36,8 +35,7 @@ import { fetchWeatherData } from "@/api";
 export default {
   data() {
     return {
-      location: "Seoul",
-      defaultSearch: this.$store.state.defaultSearch,
+      location: "Seoul", //첫 렌더링 되었을 때 나올 값
     };
   },
   computed: {

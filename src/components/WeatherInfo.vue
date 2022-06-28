@@ -27,13 +27,13 @@ export default {
 };
 </script>
 
-<!--<style lang="scss">-->
-<!--.weather-main {-->
-<!--  display: flex;-->
-<!--  flex-direction: column;-->
-<!--  align-items: center;-->
-<!--  text-align: center;-->
-<!--  margin-top: 40px;-->
-<!--  margin-bottom: 40px;-->
-<!--}-->
-<!--</style>-->
+<style lang="scss">
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+</style>

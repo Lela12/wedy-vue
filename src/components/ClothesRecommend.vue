@@ -33,7 +33,6 @@
 import { mapGetters } from "vuex";
 
 export default {
-  props: ["currentTemp"],
   data() {
     return {};
   },
