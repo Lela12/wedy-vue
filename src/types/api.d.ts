@@ -9,7 +9,7 @@ export interface Weather {
   icon: string;
 }
 
-export interface WeatherData {
+export interface newWeatherData {
   base: string;
   clouds: {
     all: number;
@@ -59,5 +59,3 @@ export interface WeatherSuccess {
   type: typeof WEATHER_SUCESS;
   payload: WeatherData;
 }
-
-export type WeatherDispatchType = WeatherLoading | WeatherSuccess;

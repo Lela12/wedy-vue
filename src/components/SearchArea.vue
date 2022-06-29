@@ -38,6 +38,7 @@ export default {
       location: "Seoul", //첫 렌더링 되었을 때 나올 값
     };
   },
+
   computed: {
     ...mapGetters([
       "isSearched",

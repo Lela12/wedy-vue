@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { mapGetters } from "vuex";
 
 export default {
@@ -43,3 +43,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.clothes-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+</style>

@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import { fetchWeatherData } from "../api/index";
 import axios from "axios";
+import { newWeatherData } from "../types/api";
 import theme from "tailwindcss/defaultTheme";
 
 export default createStore({
@@ -77,21 +78,23 @@ export default createStore({
     async fetchWeatherData({ commit }, location) {
       try {
         const { data } = await fetchWeatherData(location);
-        const newWeatherData = {
-          name: data.name,
-          temp: data.main.temp,
-          tempMin: data.main.temp_min,
-          tempMax: data.main.temp_max,
-          feelsLike: data.main.feels_like,
-          description: data.weather[0].description,
-          icon: `https://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-          info: data.weather[0].main,
-          wind: data.wind.speed,
-          humidity: data.main.humidity,
-          clouds: data.clouds.all,
-          country: data.sys.country,
+        const WeatherData = {
+          name: data.name as string,
+          temp: data.main.temp as number,
+          tempMin: data.main.temp_min as number,
+          tempMax: data.main.temp_max as number,
+          feelsLike: data.main.feels_like as number,
+          description: data.weather[0].description as string,
+          icon: `https://openweathermap.org/img/w/${
+            data.weather[0].icon as string
+          }.png`,
+          info: data.weather[0].main as string,
+          wind: data.wind.speed as number,
+          humidity: data.main.humidity as number,
+          clouds: data.clouds.all as number,
+          country: data.sys.country as string,
         };
-        commit("SET_WEATHER_DATA", newWeatherData);
+        commit("SET_WEATHER_DATA", WeatherData);
       } catch (error) {
         console.log(error);
       }
