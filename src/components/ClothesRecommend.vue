@@ -28,7 +28,7 @@
     </div>
   </div>
 </template>
-
+<!--colorpicker-->
 <script lang="ts">
 import { mapGetters } from "vuex";
 

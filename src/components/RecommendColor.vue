@@ -12,8 +12,8 @@
     </h1>
   </div>
 </template>
-
-<script>
+//헥사코드 값을 던지면 어울릴색
+<script lang="ts">
 export default {
   name: "App",
   data() {
@@ -21,6 +21,7 @@ export default {
       randomColor: "#ff0000",
     };
   },
+
   methods: {
     getRandomColor() {
       this.randomColor = this.generateRandomHexColor();

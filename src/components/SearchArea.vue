@@ -17,10 +17,9 @@
           type="text"
           v-model="location"
           @keydown.enter="getData"
-          :placeholder="location"
         />
       </form>
-      <span class="country" v-if="getData">{{ getWeatherCity }}</span>
+      <span class="country" v-if="!isSearched">{{ getWeatherCity }}</span>
       <div class="error" v-else>
         해당하는 도시가 없습니다. 다시 입력해주세요!
       </div>
@@ -28,34 +27,38 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
 import { fetchWeatherData } from "@/api";
 
-export default {
+export default defineComponent({
   data() {
     return {
-      location: "Seoul", //첫 렌더링 되었을 때 나올 값
+      location: "Seoul" as string, //첫 렌더링 되었을 때 나올 값
     };
   },
 
   computed: {
+    //mapGetters을 사용해 vuex에 저장된 getters
     ...mapGetters([
       "isSearched",
       "getWeatherCity",
       "getDefaultValue",
       "getError",
-      { getWeatherMain: "getWeatherMain" },
+      // { getWeatherMain: "getWeatherMain" },
     ]),
   },
   methods: {
-    ...mapActions(["fetchWeatherData"]),
-    getData() {
-      this.fetchWeatherData(this.location);
+    ...mapActions({
+      fetchWeatherData1: "fetchWeatherData1",
+    }),
+    getData(): void {
+      this.fetchWeatherData1(this.location);
     },
   },
   created() {
     this.getData();
   },
-};
+});
 </script>

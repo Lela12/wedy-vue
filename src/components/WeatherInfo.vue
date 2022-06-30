@@ -11,8 +11,8 @@
     <div class="weather-description">{{ getWeatherMain.description }}</div>
   </div>
 </template>
-
-<script>
+<!--define-->
+<script lang="ts">
 import { mapGetters } from "vuex";
 
 export default {

@@ -75,7 +75,10 @@ export default createStore({
 
   actions: {
     //비동기 함수 실행
-    async fetchWeatherData({ commit }, location) {
+    fetchWeatherData1: async function (
+      { commit },
+      location: string
+    ): Promise<void> {
       try {
         const { data } = await fetchWeatherData(location);
         const WeatherData = {
