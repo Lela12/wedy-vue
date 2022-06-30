@@ -14,7 +14,9 @@
 </template>
 //헥사코드 값을 던지면 어울릴색
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "App",
   data() {
     return {
@@ -36,7 +38,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style>
