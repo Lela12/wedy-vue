@@ -28,9 +28,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import { mapActions, mapGetters } from "vuex";
 import { fetchWeatherData } from "@/api";
+import { useStore } from "vuex";
 
 export default defineComponent({
   data() {
@@ -39,16 +40,15 @@ export default defineComponent({
     };
   },
 
-  computed: {
-    //mapGetters을 사용해 vuex에 저장된 getters
-    ...mapGetters([
-      "isSearched",
-      "getWeatherCity",
-      "getDefaultValue",
-      "getError",
-      // { getWeatherMain: "getWeatherMain" },
-    ]),
-  },
+  // setup() {
+  //   let location = "Seoul" as string; //첫 렌더링 되었을 때 나올 값
+  //   const store = useStore();
+  //   const state=reactive({})
+  //   return {
+  //     getweatherCity,
+  //   };
+  // },
+
   methods: {
     ...mapActions({
       fetchWeatherData1: "fetchWeatherData1",
