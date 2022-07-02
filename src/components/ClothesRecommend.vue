@@ -30,18 +30,22 @@
 </template>
 <!--colorpicker-->
 <script lang="ts">
-import { mapGetters } from "vuex";
+import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
 
-export default {
-  data() {
-    return {};
+export default defineComponent({
+  setup() {
+    const store = useStore();
+    const getWeatherMain = computed(() => store.getters["getWeatherMain"]);
+
+    return {
+      getWeatherMain,
+    };
   },
-  computed: {
-    ...mapGetters({
-      getWeatherMain: "getWeatherMain",
-    }),
+  mounted() {
+    this.getWeatherMain();
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -28,37 +28,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { mapActions, mapGetters } from "vuex";
+import { computed, defineComponent, ref } from "vue";
 import { fetchWeatherData } from "@/api";
 import { useStore } from "vuex";
+import store from "@/store";
 
 export default defineComponent({
-  data() {
+  setup() {
+    const store = useStore();
+    const location = ref("Seoul");
+    const isSearched = ref(false);
+    const getWeatherCity = computed(() => store.getters["getWeatherCity"]);
+    const getData = () => store.dispatch("fetchWeatherData", location.value);
+
+    getData();
+
     return {
-      location: "Seoul" as string, //첫 렌더링 되었을 때 나올 값
+      location,
+      getData,
+      isSearched,
+      getWeatherCity,
     };
-  },
-
-  // setup() {
-  //   let location = "Seoul" as string; //첫 렌더링 되었을 때 나올 값
-  //   const store = useStore();
-  //   const state=reactive({})
-  //   return {
-  //     getweatherCity,
-  //   };
-  // },
-
-  methods: {
-    ...mapActions({
-      fetchWeatherData1: "fetchWeatherData1",
-    }),
-    getData(): void {
-      this.fetchWeatherData1(this.location);
-    },
-  },
-  created() {
-    this.getData();
   },
 });
 </script>

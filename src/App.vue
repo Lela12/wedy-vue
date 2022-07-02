@@ -10,14 +10,14 @@ import SearchArea from "@/components/SearchArea.vue";
 import WeatherInfo from "@/components/WeatherInfo.vue";
 import RecommendCardContainer from "@/components/RecommendCardContainer.vue";
 
-export default defineComponent({
+export default {
   name: "App",
   components: {
     SearchArea,
     WeatherInfo,
     RecommendCardContainer,
   },
-});
+};
 </script>
 
 <style lang="scss">

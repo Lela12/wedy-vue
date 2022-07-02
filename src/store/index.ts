@@ -3,6 +3,7 @@ import { fetchWeatherData } from "../api/index";
 import axios from "axios";
 import { newWeatherData } from "../types/api";
 import theme from "tailwindcss/defaultTheme";
+import { ref } from "vue";
 
 export default createStore({
   state: {
@@ -75,12 +76,14 @@ export default createStore({
 
   actions: {
     //비동기 함수 실행
-    fetchWeatherData1: async function (
+    fetchWeatherData: async function (
       { commit },
       location: string
     ): Promise<void> {
       try {
         const { data } = await fetchWeatherData(location);
+        console.log(data);
+
         const WeatherData = {
           name: data.name as string,
           temp: data.main.temp as number,

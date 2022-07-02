@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { newWeatherData } from "@/types/api";
 
 const config = {
   baseUrl: "https://api.openweathermap.org",

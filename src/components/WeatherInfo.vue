@@ -1,7 +1,7 @@
 <template>
   <div class="weather-main">
     <div class="weather-feelsLike">
-      <b v-show="getWeatherMain.temp">{{ `${getWeatherMain.temp}°` }}</b>
+      <b>{{ getWeatherMain.temp }}°</b>
     </div>
     <div class="weather-temp">
       <div class="weather-icon">
@@ -13,9 +13,10 @@
 </template>
 <!--define-->
 <script lang="ts">
+import { computed, defineComponent } from "vue";
 import { mapGetters } from "vuex";
 
-export default {
+export default defineComponent({
   data() {
     return {};
   },
@@ -24,7 +25,18 @@ export default {
       getWeatherMain: "getWeatherMain",
     }),
   },
-};
+  // setup() {
+  //   const store = useStore();
+  //   const getWeatherMain = computed(() => store.getters["getWeatherMain"]);
+  //
+  //   return {
+  //     getWeatherMain,
+  //   };
+  // },
+  mounted() {
+    this.getWeatherMain();
+  },
+});
 </script>
 
 <style lang="scss">
