@@ -1,42 +1,46 @@
 <template>
   <div id="app">
     <div
-      :style="{ backgroundColor: randomColor }"
+      :style="{ backgroundColor: state.randomColor }"
       class="np-color-preview"
     ></div>
     <button @click="getRandomColor" class="np-btn">
       Generate random color
     </button>
     <h1>
-      <span class="hexValue">{{ randomColor }}</span>
+      <span class="hexValue">{{ state.randomColor }}</span>
     </h1>
   </div>
 </template>
 //헥사코드 값을 던지면 어울릴색
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
-  name: "App",
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       randomColor: "#ff0000",
-    };
-  },
+    });
 
-  methods: {
-    getRandomColor() {
-      this.randomColor = this.generateRandomHexColor();
-    },
-    generateRandomHexColor() {
+    function getRandomColor() {
+      state.randomColor = generateRandomHexColor()!;
+    }
+
+    function generateRandomHexColor() {
       const randomColor =
         "#" + Math.floor(Math.random() * 16777215).toString(16);
       if (randomColor.length !== 7) {
-        return this.generateRandomHexColor();
+        return generateRandomHexColor();
       } else {
         return randomColor;
       }
-    },
+    }
+
+    return {
+      state,
+      getRandomColor,
+      generateRandomHexColor,
+    };
   },
 });
 </script>

@@ -2,6 +2,7 @@
   <SearchArea />
   <WeatherInfo />
   <RecommendCardContainer />
+  <RecommendColor />
 </template>
 
 <script lang="ts">
@@ -9,10 +10,12 @@ import { defineComponent } from "vue";
 import SearchArea from "@/components/SearchArea.vue";
 import WeatherInfo from "@/components/WeatherInfo.vue";
 import RecommendCardContainer from "@/components/RecommendCardContainer.vue";
+import RecommendColor from "@/components/RecommendColor.vue";
 
 export default {
   name: "App",
   components: {
+    RecommendColor,
     SearchArea,
     WeatherInfo,
     RecommendCardContainer,
